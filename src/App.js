@@ -26,15 +26,18 @@ const App = styled.div`
 function SelectPage() {
   const fields = UserApi.getPreference(PREFERENCE.fields);
   const page = fields ? PAGE.map : PAGE.preferences;
-  return <Redirect to={page} />;
+  return <Redirect to={PAGE.map} />;
+  //return <Redirect to={page} />;
 }
 
 export default () => (
   <Router>
-    <Switch>
-      <Route exact path={PAGE.preferences} component={Preferences} />
-      <Route exact path={PAGE.map} component={FieldsMap} />
+    <>
       <SelectPage />
-    </Switch>
+      <Switch>
+        <Route exact path={PAGE.preferences} component={Preferences} />
+        <Route exact path={PAGE.map} component={FieldsMap} />
+      </Switch>
+    </>
   </Router>
 );
