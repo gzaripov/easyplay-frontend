@@ -1,9 +1,13 @@
 import uniqid from "uniqid";
 
+export const PREFERENCE = {
+  fields: 0
+};
+
 class UserApi {
   constructor(storage) {
-    this.init();
     this.storage = storage;
+    this.init();
   }
 
   init() {
@@ -15,17 +19,31 @@ class UserApi {
   }
 
   getUserFromStorage() {
-    return this.storage.getItem("user");
+    try {
+      const user = this.storage.getItem("user");
+      return JSON.parse(user);
+    } catch {
+      return null;
+    }
   }
 
   saveUserToStorage() {
-    this.storage.setItem("user", this.user);
+    this.storage.setItem("user", JSON.stringify(this.user));
   }
 
   createUser() {
     return {
-      id: uniqid()
+      id: uniqid(),
+      preferences: []
     };
+  }
+
+  addPreference(type, preference) {
+    this.user.preferences.push({ type, preference });
+  }
+
+  getPreference(type) {
+    return this.user.preferences.find(pref => pref.type === type);
   }
 
   getUser() {

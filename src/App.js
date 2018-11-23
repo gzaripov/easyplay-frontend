@@ -1,6 +1,19 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
-import { ReactComponent as logo } from "./logo.svg";
+import styled from "styled-components";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+  withRouter
+} from "react-router-dom";
+import UserApi, { PREFERENCE } from "./api/user";
+import Preferences from "./preferences";
+
+const PAGE = {
+  preferences: "/preferences",
+  map: "/map"
+};
 
 const App = styled.div`
   height: 100vh;
@@ -10,22 +23,18 @@ const App = styled.div`
   background-color: #282c34;
 `;
 
-const LogoAnimation = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-const Logo = styled(logo)`
-  animation: ${LogoAnimation} infinite 5s cubic-bezier(0.4, 0.68, 0.72, 0.26);
-  height: 40vmin;
-`;
+function SelectPage() {
+  const fields = UserApi.getPreference(PREFERENCE.fields);
+  const page = fields ? PAGE.map : PAGE.preferences;
+  return <Redirect to={page} />;
+}
 
 export default () => (
-  <App>
-    <Logo />
-  </App>
+  <Router>
+    <Switch>
+      <Route exact path={PAGE.preferences} component={Preferences} />
+      <Route exact path={PAGE.map} />
+      <SelectPage />
+    </Switch>
+  </Router>
 );
