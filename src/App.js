@@ -4,11 +4,11 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
-  withRouter
+  Redirect
 } from "react-router-dom";
 import UserApi, { PREFERENCE } from "./api/user";
-import Preferences from "./preferences";
+import Preferences from "./Preferences";
+import FieldsMap from "./FieldsMap";
 
 const PAGE = {
   preferences: "/preferences",
@@ -33,7 +33,7 @@ export default () => (
   <Router>
     <Switch>
       <Route exact path={PAGE.preferences} component={Preferences} />
-      <Route exact path={PAGE.map} />
+      <Route exact path={PAGE.map} component={FieldsMap} />
       <SelectPage />
     </Switch>
   </Router>
