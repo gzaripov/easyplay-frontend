@@ -62,12 +62,12 @@ const ShowNextActivities = styled(Button)`
   padding: 0;
 `;
 
-export default () => (
+export default ({ activities }) => (
   <BottomSheet>
     <SearchInfo>
-      <SearchText>Football</SearchText>
-      <SearchText>Volleyball</SearchText>
-      <SearchText>Football</SearchText>
+      {activities.map(({ id, title }) => (
+        <SearchText key={id}>{title}</SearchText>
+      ))}
       <SettingsButton>
         <SettingsIcons src={settings} alt="Settings icon" />
       </SettingsButton>

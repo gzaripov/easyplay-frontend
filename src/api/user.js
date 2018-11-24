@@ -1,7 +1,9 @@
 import uniqid from "uniqid";
+import ServerApi from "./api";
 
 export const PREFERENCE = {
-  activities: 0
+  selectedActivities: 0,
+  radius: 1
 };
 
 class UserApi {
@@ -34,7 +36,7 @@ class UserApi {
   createUser() {
     return {
       id: uniqid(),
-      preferences: []
+      preferences: [{ type: PREFERENCE.radius, preference: 8000 }]
     };
   }
 
@@ -64,6 +66,17 @@ class UserApi {
 
   getUser() {
     return this.user;
+  }
+
+  getSelectedActivities() {
+    return ServerApi.getActivities().then(activities => {
+      const selected = this.getPreference(PREFERENCE.selectedActivities);
+      if (selected) {
+        const acts = activities.filter(({ id }) => selected.includes(id));
+        return Promise.resolve(acts);
+      }
+      return Promise.resolve([]);
+    });
   }
 }
 

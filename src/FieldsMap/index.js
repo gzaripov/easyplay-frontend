@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { YMaps, Map, GeoObject, GeolocationControl } from "react-yandex-maps";
 import styled from "styled-components";
 import MapsApi from "../api/maps";
+import UserApi from "../api/user";
 import Header from "./Header";
 import BottomSheet from "./BottomSheet";
 import Waiting from "../modals/Waiting";
@@ -19,21 +20,26 @@ const FieldsMapContainer = styled.div`
 
 export default class extends Component {
   state = {
+    selectedActivities: [],
     center: [0, 0],
     position: { type: "Point" },
     zoom: 17
   };
 
   componentDidMount() {
+    UserApi.getSelectedActivities().then(selectedActivities =>
+      this.setState({ selectedActivities })
+    );
     MapsApi.getCurrentLocation().then(({ latitude, longitude }) => {
       this.setState({ center: [latitude, longitude] });
     });
   }
 
   render() {
+    const { selectedActivities } = this.state;
     return (
       <FieldsMapContainer>
-        <Waiting title="Searching" />
+        {/* <Waiting title="Searching" /> */}
         <Header />
         <YMaps query={{ lang: "en_US" }}>
           <Map
@@ -53,7 +59,7 @@ export default class extends Component {
             />
           </Map>
         </YMaps>
-        <BottomSheet />
+        <BottomSheet activities={selectedActivities} />
       </FieldsMapContainer>
     );
   }

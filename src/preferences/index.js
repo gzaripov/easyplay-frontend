@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Heading, PrimaryButton } from "../Components";
 import Activities from "./Activities";
 import UserApi, { PREFERENCE } from "../api/user";
-import activitesMock from "./mock.json";
+import ServerApi from "../api/api";
 import { PAGE } from "../App";
 
 const PageContainer = styled.section`
@@ -36,15 +36,23 @@ const FinishButton = styled(PrimaryButton)`
 
 export default class extends Component {
   state = {
-    ...activitesMock,
+    summerActivities: [],
+    winterActivities: [],
     selectedIds: []
   };
 
   componentDidMount() {
-    if (UserApi.hasPreference(PREFERENCE.activities)) {
-      const ids = UserApi.getPreference(PREFERENCE.activities).map(
-        ({ id }) => id
+    ServerApi.getActivities().then(activities => {
+      const summerActivities = activities.filter(
+        act => act.season === "summer"
       );
+      const winterActivities = activities.filter(
+        act => act.season === "winter"
+      );
+      this.setState({ summerActivities, winterActivities });
+    });
+    if (UserApi.hasPreference(PREFERENCE.selectedActivities)) {
+      const ids = UserApi.getPreference(PREFERENCE.selectedActivities);
       this.setState({ selectedIds: ids });
     }
   }
@@ -63,12 +71,9 @@ export default class extends Component {
   };
 
   updatePreferences = () => {
-    const { summerActivities, winterActivities, selectedIds } = this.state;
-    const activities = [...summerActivities, ...winterActivities].filter(
-      ({ id }) => selectedIds.includes(id)
-    );
-    if (activities.length > 0) {
-      UserApi.addPreference(PREFERENCE.activities, activities);
+    const { selectedIds } = this.state;
+    if (selectedIds.length > 0) {
+      UserApi.addPreference(PREFERENCE.selectedActivities, selectedIds);
       this.props.history.push(PAGE.map);
     }
   };

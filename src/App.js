@@ -17,7 +17,9 @@ export const PAGE = {
 };
 
 function SelectPage({ location: { pathname } }) {
-  const hasActivitiesPreference = UserApi.hasPreference(PREFERENCE.activities);
+  const hasActivitiesPreference = UserApi.hasPreference(
+    PREFERENCE.selectedActivities
+  );
   if (!hasActivitiesPreference) {
     const page = PAGE.preferences;
     const isSamePage = page === pathname;
