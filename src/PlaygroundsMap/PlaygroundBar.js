@@ -81,17 +81,18 @@ const ActionIcon = styled.img`
   height: 30px;
 `;
 
-export default () => (
+export default ({ name, address, type }) => (
   <PlaygroundBar>
     <Info>
       <Status>BEST MATCH</Status>
       <Address>
-        Витебская ул. 5 <Distance>0.9 Km</Distance>
+        {address}
+        <Distance>0.9 Km</Distance>
       </Address>
       <Props>
         <Prop>3 Online</Prop>
         <Prop>2 Coming</Prop>
-        <Prop>Basketball</Prop>
+        <Prop>{type}</Prop>
       </Props>
     </Info>
     <Actions>

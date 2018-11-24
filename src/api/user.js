@@ -46,7 +46,7 @@ class UserApi {
   }
 
   getNearestPlaygrounds() {
-    return ServerApi.getUnits();
+    return ServerApi.getUnits(this.user.id);
   }
 
   hasPreference(type) {
@@ -54,7 +54,8 @@ class UserApi {
   }
 
   getPreference(type) {
-    const prefObject = this.user.preferences.find(pref => pref.type === type);
+    const prefObject =
+      this.user && this.user.preferences.find(pref => pref.type === type);
     return prefObject ? prefObject.preference : null;
   }
 

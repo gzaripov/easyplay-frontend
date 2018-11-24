@@ -4,11 +4,6 @@ import { PrimaryText, SecondaryText } from "../Components";
 import burger from "./icons/burger.png";
 
 const Header = styled.header`
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: 10000;
   display: flex;
   align-items: center;
   background: white;

@@ -1,20 +1,12 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { YMaps, Map, GeoObject, GeolocationControl } from "react-yandex-maps";
 import MapsApi from "../api/maps";
 import UserApi from "../api/user";
-import Header from "./Header";
-import BottomSheet from "./BottomSheet";
 import Waiting from "../modals/Waiting";
 import { PAGE } from "../App";
-import UserBar from "./UserBar";
-import PlaygroundBar from "./PlaygroundBar";
+import { Main, SearchResults } from "./states";
 
 const mapState = {
   center: [55.751574, 37.573856],
@@ -53,7 +45,7 @@ export default class extends Component {
   render() {
     const { selectedActivities, playgrounds } = this.state;
     console.log(playgrounds);
-    const { match } = this.props;
+    const { history, match } = this.props;
     //const marks = playgrounds.map(({ location }) => location);
     return (
       <FieldsMapContainer>
@@ -88,24 +80,11 @@ export default class extends Component {
         </YMaps>
         <Router>
           <Switch>
-            <Route
+            <Main
               path={`${match.path}/find-game`}
-              render={() => (
-                <>
-                  <UserBar />
-                  <BottomSheet activities={selectedActivities} />
-                </>
-              )}
+              activities={selectedActivities}
             />
-            <Route
-              path={`${match.path}/search-results`}
-              render={({ history }) => (
-                <>
-                  <Header history={history} title="Search results" />
-                  <PlaygroundBar />
-                </>
-              )}
-            />
+            <SearchResults path={`${match.path}/search-results`} />
             <Redirect from="/map" to={`${match.path}/find-game`} />
           </Switch>
         </Router>

@@ -4,10 +4,6 @@ import { Button, PrimaryButton } from "../Components";
 import settings from "./icons/settings.png";
 
 const BottomSheet = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -77,9 +77,9 @@ class Api {
     );
   }
 
-  getUnits() {
-    return this.requestJson(REQUEST.getUnits, { radius: 8000 }).then(units =>
-      Promise.resolve(this.mapUnitsToPlaygrounds(units))
+  getUnits(id) {
+    return this.requestJson(REQUEST.getUnits, { id, radius: 4000 }).then(
+      units => Promise.resolve(this.mapUnitsToPlaygrounds(units))
     );
   }
 
