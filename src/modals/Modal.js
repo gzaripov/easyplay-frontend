@@ -3,10 +3,15 @@ import styled from "styled-components";
 
 const ModalBackdrop = styled.div`
   position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: black;
-  opacity: 0.3;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
 `;
 
 const Modal = styled.div`

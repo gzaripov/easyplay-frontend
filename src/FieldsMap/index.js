@@ -4,6 +4,7 @@ import styled from "styled-components";
 import MapsApi from "../api/maps";
 import Header from "./Header";
 import BottomSheet from "./BottomSheet";
+import Waiting from "../modals/Waiting";
 
 const mapState = {
   center: [55.751574, 37.573856],
@@ -32,6 +33,7 @@ export default class extends Component {
   render() {
     return (
       <FieldsMapContainer>
+        <Waiting title="Searching..." />
         <Header />
         <YMaps query={{ lang: "en_US" }}>
           <Map
