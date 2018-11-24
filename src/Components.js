@@ -37,4 +37,6 @@ export const PrimaryButton = styled(Button)`
   color: #ffffff;
   border-radius: 5px;
   background-image: linear-gradient(to right, #ff7200, #ff5400);
+  opacity: ${p => (p.disabled ? "0.6" : "")};
+  cursor: ${p => (p.disabled ? "not-allowed" : "pointer")};
 `;

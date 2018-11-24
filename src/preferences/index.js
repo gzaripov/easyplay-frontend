@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Heading, PrimaryButton } from "../Components";
 import Activities from "./Activities";
+import UserApi, { PREFERENCE } from "../api/user";
 import activitesMock from "./mock.json";
+import { PAGE } from "../App";
 
 const PageContainer = styled.section`
   padding-top: 54px;
@@ -33,7 +35,19 @@ const FinishButton = styled(PrimaryButton)`
 `;
 
 export default class extends Component {
-  state = { ...activitesMock, selectedIds: [] };
+  state = {
+    ...activitesMock,
+    selectedIds: []
+  };
+
+  componentDidMount() {
+    if (UserApi.hasPreference(PREFERENCE.activities)) {
+      const ids = UserApi.getPreference(PREFERENCE.activities).map(
+        ({ id }) => id
+      );
+      this.setState({ selectedIds: ids });
+    }
+  }
 
   toggleSelection = ({ id }) => () => {
     const ids = this.state.selectedIds;
@@ -45,6 +59,17 @@ export default class extends Component {
       this.setState({
         selectedIds: ids.filter(selId => selId !== id)
       });
+    }
+  };
+
+  updatePreferences = () => {
+    const { summerActivities, winterActivities, selectedIds } = this.state;
+    const activities = [...summerActivities, ...winterActivities].filter(
+      ({ id }) => selectedIds.includes(id)
+    );
+    if (activities.length > 0) {
+      UserApi.addPreference(PREFERENCE.activities, activities);
+      this.props.history.push(PAGE.map);
     }
   };
 
@@ -73,7 +98,12 @@ export default class extends Component {
             activities={winterActs}
             onSelect={this.toggleSelection}
           />
-          <FinishButton>Finish</FinishButton>
+          <FinishButton
+            onClick={this.updatePreferences}
+            disabled={selectedIds.length === 0}
+          >
+            Finish
+          </FinishButton>
         </Page>
       </PageContainer>
     );

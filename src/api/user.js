@@ -1,7 +1,7 @@
 import uniqid from "uniqid";
 
 export const PREFERENCE = {
-  fields: 0
+  activities: 0
 };
 
 class UserApi {
@@ -11,14 +11,14 @@ class UserApi {
   }
 
   init() {
-    this.user = this.getUserFromStorage();
+    this.user = this.restoreUser();
     if (!this.user) {
       this.user = this.createUser();
-      this.saveUserToStorage();
+      this.storeUser();
     }
   }
 
-  getUserFromStorage() {
+  restoreUser() {
     try {
       const user = this.storage.getItem("user");
       return JSON.parse(user);
@@ -27,7 +27,7 @@ class UserApi {
     }
   }
 
-  saveUserToStorage() {
+  storeUser() {
     this.storage.setItem("user", JSON.stringify(this.user));
   }
 
@@ -38,12 +38,28 @@ class UserApi {
     };
   }
 
-  addPreference(type, preference) {
-    this.user.preferences.push({ type, preference });
+  hasPreference(type) {
+    return !!this.getPreference(type);
   }
 
   getPreference(type) {
-    return this.user.preferences.find(pref => pref.type === type);
+    const prefObject = this.user.preferences.find(pref => pref.type === type);
+    return prefObject ? prefObject.preference : null;
+  }
+
+  addPreference(type, preference) {
+    if (this.hasPreference(type)) {
+      this.removePreference(type);
+    }
+    this.user.preferences.push({ type, preference });
+    this.storeUser();
+  }
+
+  removePreference(type) {
+    this.user.preferences = this.user.preferences.filter(
+      pref => pref.type !== type
+    );
+    this.storeUser();
   }
 
   getUser() {
