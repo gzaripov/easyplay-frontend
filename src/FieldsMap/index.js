@@ -3,6 +3,7 @@ import { YMaps, Map, GeoObject, GeolocationControl } from "react-yandex-maps";
 import styled from "styled-components";
 import MapsApi from "../api/maps";
 import Header from "./Header";
+import BottomSheet from "./BottomSheet";
 
 const mapState = {
   center: [55.751574, 37.573856],
@@ -50,6 +51,7 @@ export default class extends Component {
             />
           </Map>
         </YMaps>
+        <BottomSheet />
       </FieldsMapContainer>
     );
   }

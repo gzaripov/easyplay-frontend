@@ -27,8 +27,15 @@ export const BoldText = styled.span`
   color: rgba(0, 0, 0, 0.54);
 `;
 
+const ButtonStyled = styled.button`
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  background: none;
+`;
+
 export const Button = ({ type = "button", ...props } = {}) => (
-  <button type={type} {...props} />
+  <ButtonStyled type={type} {...props} />
 );
 
 export const PrimaryButton = styled(Button)`
@@ -37,7 +44,6 @@ export const PrimaryButton = styled(Button)`
   font-family: Roboto;
   font-size: 18px;
   font-weight: 500;
-  text-align: center;
   color: #ffffff;
   border-radius: 5px;
   background-image: linear-gradient(to right, #ff7200, #ff5400);
