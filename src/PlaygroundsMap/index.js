@@ -8,16 +8,17 @@ import Waiting from "../modals/Waiting";
 import { Main, SearchResults } from "./states";
 import Upcoming from "./states/Upcoming";
 
-const mapState = {
-  center: [55.751574, 37.573856],
-  zoom: 9
-};
-
 const FieldsMapContainer = styled.div`
   position: relative;
   width: 100vw;
   height: 100vh;
 `;
+
+export const STATE = {
+  main: "/map/find-game",
+  searchResults: "/map/search-results",
+  upcomingGames: "/map/upcoming-games"
+};
 
 export default class extends Component {
   state = {
@@ -45,18 +46,13 @@ export default class extends Component {
   render() {
     const { selectedActivities, playgrounds } = this.state;
     console.log(playgrounds);
-    const { history, match } = this.props;
+    const { match } = this.props;
     //const marks = playgrounds.map(({ location }) => location);
     return (
       <FieldsMapContainer>
         {/* <Waiting title="Searching" /> */}
         <YMaps query={{ lang: "en_US" }}>
-          <Map
-            width="100%"
-            height="100%"
-            state={this.state}
-            defaultState={mapState}
-          >
+          <Map width="100%" height="100%" state={this.state}>
             <GeoObject
               geometry={{
                 type: "Point",
@@ -80,16 +76,10 @@ export default class extends Component {
         </YMaps>
         <Router>
           <Switch>
-            <Main
-              path={`${match.path}/find-game`}
-              activities={selectedActivities}
-            />
-            <SearchResults path={`${match.path}/search-results`} />
-            <Upcoming
-              path={`${match.path}/upcoming-games`}
-              playgrounds={playgrounds}
-            />
-            <Redirect from="/map" to={`${match.path}/find-game`} />
+            <Main path={STATE.main} activities={selectedActivities} />
+            <SearchResults path={STATE.searchResults} />
+            <Upcoming path={STATE.upcomingGames} playgrounds={playgrounds} />
+            <Redirect from="/map" to={STATE.main} />
           </Switch>
         </Router>
       </FieldsMapContainer>

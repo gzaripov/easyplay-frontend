@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 import { Button, PrimaryButton } from "../../Components";
+import { STATE } from "..";
 
-const BottomSheet = styled.div`
+const FindBarStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,9 +29,13 @@ const ShowNextActivities = styled(Button)`
   padding: 0;
 `;
 
-export default () => (
-  <BottomSheet>
+const FindBar = ({ history }) => (
+  <FindBarStyled>
     <FindGameButton>Find Game</FindGameButton>
-    <ShowNextActivities>Show upcoming games</ShowNextActivities>
-  </BottomSheet>
+    <ShowNextActivities onClick={() => history.push(STATE.upcomingGames)}>
+      Show upcoming games
+    </ShowNextActivities>
+  </FindBarStyled>
 );
+
+export default withRouter(FindBar);
