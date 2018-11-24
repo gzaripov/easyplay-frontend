@@ -15,7 +15,11 @@ export const PrimaryText = styled.span`
   font-size: 16px;
 `;
 
-export const SecondaryText = styled.span`
+export const SecondaryText = styled(PrimaryText)`
+  color: rgba(0, 0, 0, 0.87);
+`;
+
+export const BoldText = styled.span`
   font-family: Roboto;
   font-size: 14px;
   opacity: 0.54;

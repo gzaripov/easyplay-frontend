@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { SecondaryText } from "../Components";
+import { BoldText } from "../Components";
 import Activity from "./Activity";
 
 const Activities = styled.div`
@@ -9,7 +9,7 @@ const Activities = styled.div`
   margin-top: 46px;
 `;
 
-const Title = styled(SecondaryText)`
+const Title = styled(BoldText)`
   text-align: left;
   margin-bottom: 20px;
 `;
