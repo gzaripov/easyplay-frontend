@@ -51,6 +51,12 @@ export const PrimaryButton = styled(Button)`
   cursor: ${p => (p.disabled ? "not-allowed" : "pointer")};
 `;
 
+export const Divider = styled.hr`
+  margin: 0;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.13);
+`;
+
 const SpinnerKyframes = keyframes` 
   from {
     transform: rotate(0deg);

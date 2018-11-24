@@ -16,6 +16,10 @@ export const REQUEST = {
   getActivities: {
     method: "post",
     url: "/getActivities"
+  },
+  setActivities: {
+    method: "post",
+    url: "/setActivities"
   }
 };
 
@@ -93,6 +97,10 @@ class Api {
         }))
       )
     );
+  }
+
+  setActivities(id, prefs) {
+    return this.request(REQUEST.setActivities, { id, prefs });
   }
 }
 

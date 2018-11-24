@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { PrimaryText, SecondaryText } from "../Components";
+import { PrimaryText, SecondaryText } from "../../Components";
 import burger from "./icons/burger.png";
 
 const Header = styled.header`
@@ -8,7 +8,6 @@ const Header = styled.header`
   align-items: center;
   background: white;
   padding: 20px 38px;
-  box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.12);
 `;
 
 const Avatar = styled.div`

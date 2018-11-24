@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Heading, PrimaryButton } from "../Components";
+import { Heading, PrimaryButton, Divider } from "../Components";
 import Activities from "./Activities";
 import UserApi, { PREFERENCE } from "../api/user";
 import ServerApi from "../api/api";
@@ -20,12 +20,10 @@ const Header = styled(Heading)`
   margin-bottom: 32px;
 `;
 
-const Divider = styled.hr`
+const Separator = styled(Divider)`
   width: 50px;
   height: 4px;
   background-color: #ff7200;
-  margin: 0;
-  border: none;
 `;
 
 const FinishButton = styled(PrimaryButton)`
@@ -92,7 +90,7 @@ export default class extends Component {
       <PageContainer>
         <Page>
           <Header>Choose your favorites games and activities</Header>
-          <Divider />
+          <Separator />
           <Activities
             title="Summer activites"
             activities={summerActs}

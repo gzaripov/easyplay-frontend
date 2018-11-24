@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, PrimaryText } from "../Components";
+import { Button, PrimaryText } from "../../Components";
 import arrowLeft from "./icons/arrow-left.png";
 
 const Header = styled.header`
@@ -14,7 +14,6 @@ const Header = styled.header`
   justify-content: center;
   background: white;
   padding: 20px 38px;
-  box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.12);
 `;
 
 const BackButton = styled(Button)`
@@ -32,6 +31,8 @@ const BackButton = styled(Button)`
 `;
 
 const BackIcon = styled.img`
+  width: 24px;
+  height: 24px;
   margin-left: 12px;
 `;
 

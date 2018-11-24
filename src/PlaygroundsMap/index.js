@@ -5,8 +5,8 @@ import { YMaps, Map, GeoObject, GeolocationControl } from "react-yandex-maps";
 import MapsApi from "../api/maps";
 import UserApi from "../api/user";
 import Waiting from "../modals/Waiting";
-import { PAGE } from "../App";
 import { Main, SearchResults } from "./states";
+import Upcoming from "./states/Upcoming";
 
 const mapState = {
   center: [55.751574, 37.573856],
@@ -85,6 +85,10 @@ export default class extends Component {
               activities={selectedActivities}
             />
             <SearchResults path={`${match.path}/search-results`} />
+            <Upcoming
+              path={`${match.path}/upcoming-games`}
+              playgrounds={playgrounds}
+            />
             <Redirect from="/map" to={`${match.path}/find-game`} />
           </Switch>
         </Router>

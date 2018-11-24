@@ -1,18 +1,19 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { AttachedToTop, AttachedToBottom } from "./Base";
-import { Header, PlaygroundBar } from "../components";
+import { Header, CreateGameBar, FiltersBar } from "../components";
 
-export default ({ matchPath, playground, ...props }) => (
+export default ({ matchPath, playgrounds, ...props }) => (
   <Route
     {...props}
     render={({ history }) => (
       <>
         <AttachedToTop>
-          <Header history={history} title="Search results" />
+          <Header history={history} title="Upcoming games" />
+          <FiltersBar filters={[]} />
         </AttachedToTop>
         <AttachedToBottom>
-          <PlaygroundBar {...playground} />
+          <CreateGameBar games={playgrounds} />
         </AttachedToBottom>
       </>
     )}

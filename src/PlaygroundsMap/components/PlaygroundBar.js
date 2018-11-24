@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import plus from "./icons/plus.png";
 import map from "./icons/map.png";
-import { Button } from "../Components";
+import { Button } from "../../Components";
 
 const PlaygroundBar = styled.div`
   position: absolute;
@@ -12,7 +12,6 @@ const PlaygroundBar = styled.div`
   display: flex;
   align-items: center;
   background-color: #ffffff;
-  box-shadow: 0px -2px 8px 0 rgba(0, 0, 0, 0.12);
   padding: 36px;
 `;
 
@@ -39,6 +38,7 @@ const Distance = styled.span`
   font-weight: 500;
   text-align: left;
   color: rgba(33, 33, 33, 0.37);
+  margin-left: 16px;
 `;
 
 const Prop = styled.span`

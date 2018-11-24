@@ -64,6 +64,9 @@ class UserApi {
       this.removePreference(type);
     }
     this.user.preferences.push({ type, preference });
+    if (type === PREFERENCE.selectedActivities) {
+      ServerApi.setActivities(this.user.id, preference);
+    }
     this.storeUser();
   }
 

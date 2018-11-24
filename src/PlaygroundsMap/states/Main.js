@@ -1,8 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { AttachedToTop, AttachedToBottom } from "./Base";
-import UserBar from "../UserBar";
-import BottomSheet from "../BottomSheet";
+import { FindBar, FiltersBar, UserBar } from "../components";
 
 export default ({ matchPath, activities, ...props }) => (
   <Route
@@ -13,7 +12,8 @@ export default ({ matchPath, activities, ...props }) => (
           <UserBar />
         </AttachedToTop>
         <AttachedToBottom>
-          <BottomSheet activities={activities} />
+          <FiltersBar filters={activities} />
+          <FindBar />
         </AttachedToBottom>
       </>
     )}
