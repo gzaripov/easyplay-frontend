@@ -41,6 +41,7 @@ const SettingsButton = styled(Button)`
 `;
 
 const SettingsIcons = styled.img`
+  display: block;
   width: 20px;
 `;
 

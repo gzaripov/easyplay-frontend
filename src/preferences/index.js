@@ -34,6 +34,10 @@ const FinishButton = styled(PrimaryButton)`
   margin-bottom: 40px;
 `;
 
+function getActivitiesBySeason(activities, season) {
+  return activities.filter(act => act.season === season);
+}
+
 export default class extends Component {
   state = {
     summerActivities: [],
@@ -43,12 +47,8 @@ export default class extends Component {
 
   componentDidMount() {
     ServerApi.getActivities().then(activities => {
-      const summerActivities = activities.filter(
-        act => act.season === "summer"
-      );
-      const winterActivities = activities.filter(
-        act => act.season === "winter"
-      );
+      const summerActivities = getActivitiesBySeason(activities, "summer");
+      const winterActivities = getActivitiesBySeason(activities, "winter");
       this.setState({ summerActivities, winterActivities });
     });
     if (UserApi.hasPreference(PREFERENCE.selectedActivities)) {

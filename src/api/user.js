@@ -35,7 +35,7 @@ class UserApi {
 
   createUser() {
     return {
-      id: uniqid(),
+      id: "jovnsy6y", //uniqid(),
       preferences: [{ type: PREFERENCE.radius, preference: 8000 }]
     };
   }
