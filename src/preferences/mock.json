@@ -1,6 +1,14 @@
-[
-  { "id": 0, "type": "Footbal" },
-  { "id": 1, "type": "Basketball" },
-  { "id": 2, "type": "Tennis" },
-  { "id": 3, "type": "Tennis" }
-]
+{
+  "summerActivities": [
+    { "id": 0, "icon": "/icons/soccer.png", "title": "Football" },
+    { "id": 1, "icon": "/icons/basketball.png", "title": "Basketball" },
+    { "id": 2, "icon": "/icons/volleyball.png", "title": "Volleyball" },
+    { "id": 3, "icon": "/icons/skateboarding.png", "title": "Skateboarding" }
+  ],
+  "winterActivities": [
+    { "id": 10, "icon": "/icons/hockey.png", "title": "Hockey" },
+    { "id": 11, "icon": "/icons/ice-skate.png", "title": "Skating" },
+    { "id": 12, "icon": "/icons/skiing.png", "title": "Skiing" },
+    { "id": 13, "icon": "/icons/swimming.png", "title": "Winter swimming" }
+  ]
+}

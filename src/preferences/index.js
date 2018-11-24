@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 import { Heading, PrimaryButton } from "../Components";
 import Activities from "./Activities";
+import activitesMock from "./mock.json";
 
 const PageContainer = styled.section`
   padding-top: 54px;
@@ -24,34 +25,56 @@ const Divider = styled.hr`
   border: none;
 `;
 
-const summerActivities = [
-  { id: 0, icon: "/icons/soccer.png", title: "Football" },
-  { id: 1, icon: "/icons/basketball.png", title: "Basketball" },
-  { id: 2, icon: "/icons/volleyball.png", title: "Volleyball" },
-  { id: 3, icon: "/icons/skateboarding.png", title: "Skateboarding" }
-];
-
-const winterActivities = [
-  { id: 0, icon: "/icons/hockey.png", title: "Hockey" },
-  { id: 1, icon: "/icons/ice-skate.png", title: "Skating" },
-  { id: 2, icon: "/icons/skiing.png", title: "Skiing" },
-  { id: 3, icon: "/icons/swimming.png", title: "Winter swimming" }
-];
-
 const FinishButton = styled(PrimaryButton)`
   width: 100%;
   margin-top: 110px;
   margin-bottom: 40px;
 `;
 
-export default () => (
-  <PageContainer>
-    <Page>
-      <Header>Choose your favorites games and activities</Header>
-      <Divider />
-      <Activities title="Summer activites" activities={summerActivities} />
-      <Activities title="Winter activites" activities={winterActivities} />
-      <FinishButton>Finish</FinishButton>
-    </Page>
-  </PageContainer>
-);
+export default class extends Component {
+  state = { ...activitesMock, selectedIds: [] };
+
+  toggleSelection = ({ id }) => () => {
+    const ids = this.state.selectedIds;
+    if (!ids.includes(id)) {
+      this.setState({
+        selectedIds: [...ids, id]
+      });
+    } else {
+      this.setState({
+        selectedIds: ids.filter(selId => selId !== id)
+      });
+    }
+  };
+
+  render() {
+    const { summerActivities, winterActivities, selectedIds } = this.state;
+    const summerActs = summerActivities.map(act => ({
+      selected: selectedIds.includes(act.id),
+      ...act
+    }));
+    const winterActs = winterActivities.map(act => ({
+      selected: selectedIds.includes(act.id),
+      ...act
+    }));
+    return (
+      <PageContainer>
+        <Page>
+          <Header>Choose your favorites games and activities</Header>
+          <Divider />
+          <Activities
+            title="Summer activites"
+            activities={summerActs}
+            onSelect={this.toggleSelection}
+          />
+          <Activities
+            title="Winter activites"
+            activities={winterActs}
+            onSelect={this.toggleSelection}
+          />
+          <FinishButton>Finish</FinishButton>
+        </Page>
+      </PageContainer>
+    );
+  }
+}

@@ -20,14 +20,14 @@ const Icon = styled.img`
   margin-left: auto;
 `;
 
-export default ({ title, activities, ...props }) => (
+export default ({ title, activities, onSelect, ...props }) => (
   <Activities {...props}>
     <Title>
       <SecondaryText>{title}</SecondaryText>
       <Icon src={sortDown} alt="sort down icon" />
     </Title>
     {activities.map(activity => (
-      <Activity key={activity.id} {...activity} />
+      <Activity key={activity.id} {...activity} onClick={onSelect(activity)} />
     ))}
   </Activities>
 );
