@@ -27,6 +27,15 @@ const Modal = styled.div`
   background-color: #ffffff;
 `;
 
+export const Header = styled.h1`
+  opacity: 0.87;
+  font-family: Helvetica;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.87);
+`;
+
 export default ({ children, ...props }) => (
   <ModalBackdrop>
     <Modal {...props}>{children}</Modal>

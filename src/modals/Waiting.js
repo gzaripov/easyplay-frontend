@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Spinner } from "../Components";
-import Modal from "./Modal";
+import Modal, { Header } from "./Modal";
 
-const Heading = styled.h2`
+const Heading = styled(Header)`
   margin-top: 10px;
 `;
 
