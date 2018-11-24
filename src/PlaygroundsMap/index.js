@@ -5,8 +5,7 @@ import { YMaps, Map, GeoObject, GeolocationControl } from "react-yandex-maps";
 import MapsApi from "../api/maps";
 import UserApi from "../api/user";
 import Waiting from "../modals/Waiting";
-import { Main, SearchResults } from "./states";
-import Upcoming from "./states/Upcoming";
+import { Main, SearchResults, Upcoming, CreateGame } from "./states";
 
 const FieldsMapContainer = styled.div`
   position: relative;
@@ -17,7 +16,8 @@ const FieldsMapContainer = styled.div`
 export const STATE = {
   main: "/map/find-game",
   searchResults: "/map/search-results",
-  upcomingGames: "/map/upcoming-games"
+  upcomingGames: "/map/upcoming-games",
+  createGame: "/map/create-game"
 };
 
 export default class extends Component {
@@ -79,6 +79,7 @@ export default class extends Component {
             <Main path={STATE.main} activities={selectedActivities} />
             <SearchResults path={STATE.searchResults} />
             <Upcoming path={STATE.upcomingGames} playgrounds={playgrounds} />
+            <CreateGame path={STATE.createGame} />
             <Redirect from="/map" to={STATE.main} />
           </Switch>
         </Router>
