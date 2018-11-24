@@ -1,11 +1,20 @@
 import React, { Component } from "react";
-import { YMaps, Map, GeoObject, GeolocationControl } from "react-yandex-maps";
 import styled from "styled-components";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
+import { YMaps, Map, GeoObject, GeolocationControl } from "react-yandex-maps";
 import MapsApi from "../api/maps";
 import UserApi from "../api/user";
 import Header from "./Header";
 import BottomSheet from "./BottomSheet";
 import Waiting from "../modals/Waiting";
+import { PAGE } from "../App";
+import UserBar from "./UserBar";
+import PlaygroundBar from "./PlaygroundBar";
 
 const mapState = {
   center: [55.751574, 37.573856],
@@ -37,10 +46,10 @@ export default class extends Component {
 
   render() {
     const { selectedActivities } = this.state;
+    const { match } = this.props;
     return (
       <FieldsMapContainer>
         {/* <Waiting title="Searching" /> */}
-        <Header />
         <YMaps query={{ lang: "en_US" }}>
           <Map
             width="100%"
@@ -59,7 +68,29 @@ export default class extends Component {
             />
           </Map>
         </YMaps>
-        <BottomSheet activities={selectedActivities} />
+        <Router>
+          <Switch>
+            <Route
+              path={`${match.path}/find-game`}
+              render={() => (
+                <>
+                  <UserBar />
+                  <BottomSheet activities={selectedActivities} />
+                </>
+              )}
+            />
+            <Route
+              path={`${match.path}/search-results`}
+              render={({ history }) => (
+                <>
+                  <Header history={history} title="Search results" />
+                  <PlaygroundBar />
+                </>
+              )}
+            />
+            <Redirect from="/map" to={`${match.path}/find-game`} />
+          </Switch>
+        </Router>
       </FieldsMapContainer>
     );
   }

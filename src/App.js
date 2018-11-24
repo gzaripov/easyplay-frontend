@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import {
   BrowserRouter as Router,
   Route,
@@ -38,7 +37,7 @@ export default () => (
       <SelectPageWithRouter />
       <Switch>
         <Route exact path={PAGE.preferences} component={Preferences} />
-        <Route exact path={PAGE.map} component={FieldsMap} />
+        <Route path={PAGE.map} component={FieldsMap} />
       </Switch>
     </>
   </Router>

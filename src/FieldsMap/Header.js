@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { PrimaryText, SecondaryText } from "../Components";
-import burger from "./icons/burger.png";
+import { Button, PrimaryText } from "../Components";
+import arrowLeft from "./icons/arrow-left.png";
 
 const Header = styled.header`
   position: absolute;
@@ -11,46 +11,43 @@ const Header = styled.header`
   z-index: 10000;
   display: flex;
   align-items: center;
+  justify-content: center;
   background: white;
   padding: 20px 38px;
   box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.12);
 `;
 
-const Avatar = styled.div`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-image: ${p => `url(${p.url})`};
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-right: 26px;
-`;
-
-const Burger = styled.img`
-  width: 28px;
-  margin-left: auto;
-`;
-
-const Info = styled.div`
+const BackButton = styled(Button)`
+  position: absolute;
+  left: 38px;
+  top: 50%;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  transform: translateY(-50%);
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
   text-align: left;
+  color: #e05300;
+`;
+
+const BackIcon = styled.img`
+  margin-left: 12px;
 `;
 
 const Title = styled(PrimaryText)`
-  font-weight: 500;
-  margin-bottom: 10px;
-  color: black;
+  font-family: Helvetica;
+  font-size: 26px;
+  font-weight: bold;
+  color: rgba(33, 33, 33, 0.87);
 `;
 
-export default () => (
+export default ({ title, history }) => (
   <Header>
-    <Avatar url="/icons/avatar.jpg" />
-    <Info>
-      <Title>Hello, Nikolai</Title>
-      <SecondaryText>Put the marker on the place where you live</SecondaryText>
-    </Info>
-    <Burger src={burger} alt="burger img" />
+    <BackButton onClick={() => history.goBack()}>
+      <BackIcon src={arrowLeft} alt="arrow left" />
+      Back
+    </BackButton>
+    <Title>{title}</Title>
   </Header>
 );
