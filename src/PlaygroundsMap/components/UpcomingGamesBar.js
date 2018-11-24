@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { PlaygroundBar } from "./index";
+import { PlaygroundBar, NotFound } from "./index";
 import { PrimaryButton, Divider } from "../../Components";
 
 const UpcomingGamesBar = styled.div`
@@ -25,14 +25,20 @@ const CreateGameButton = styled(PrimaryButton)`
   width: 370px;
 `;
 
-export default ({ games }) => (
-  <UpcomingGamesBar>
+const Games = ({ games }) => (
+  <>
     {games.map(game => (
       <>
         <PlaygroundBar key={game.id} {...game} />
         <Separator />
       </>
     ))}
+  </>
+);
+
+export default ({ games }) => (
+  <UpcomingGamesBar>
+    {games.length > 1 ? <Games games={games} /> : <NotFound />}
     <CreateGameButton>Create Game</CreateGameButton>
   </UpcomingGamesBar>
 );

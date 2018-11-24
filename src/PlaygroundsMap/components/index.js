@@ -5,6 +5,7 @@ import PlaygroundBar from "./PlaygroundBar";
 import UserBar from "./UserBar";
 import UpcomingGamesBar from "./UpcomingGamesBar";
 import CreateGameBar from "./CreateGameBar";
+import NotFound from "./NotFound";
 
 export {
   FiltersBar,
@@ -13,5 +14,6 @@ export {
   PlaygroundBar,
   UserBar,
   UpcomingGamesBar,
-  CreateGameBar
+  CreateGameBar,
+  NotFound
 };
