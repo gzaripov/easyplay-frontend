@@ -33,7 +33,7 @@ export default class extends Component {
   render() {
     return (
       <FieldsMapContainer>
-        <Waiting title="Searching..." />
+        <Waiting title="Searching" />
         <Header />
         <YMaps query={{ lang: "en_US" }}>
           <Map
