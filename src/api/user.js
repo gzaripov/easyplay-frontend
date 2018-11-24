@@ -1,4 +1,3 @@
-import uniqid from "uniqid";
 import ServerApi from "./api";
 
 export const PREFERENCE = {
@@ -15,8 +14,7 @@ class UserApi {
   init() {
     this.user = this.restoreUser();
     if (!this.user) {
-      this.user = this.createUser();
-      this.storeUser();
+      this.createUser();
     }
   }
 
@@ -34,10 +32,21 @@ class UserApi {
   }
 
   createUser() {
-    return {
-      id: "jovnsy6y", //uniqid(),
-      preferences: [{ type: PREFERENCE.radius, preference: 8000 }]
-    };
+    return ServerApi.createUser().then(({ id }) => {
+      this.user = {
+        id,
+        preferences: [{ type: PREFERENCE.radius, preference: 8000 }]
+      };
+      this.storeUser();
+    });
+  }
+
+  updateLocation({ latitude, longitude }) {
+    return ServerApi.setLocation(this.user.id, latitude, longitude);
+  }
+
+  getNearestPlaygrounds() {
+    return ServerApi.getUnits();
   }
 
   hasPreference(type) {

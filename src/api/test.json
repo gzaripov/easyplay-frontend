@@ -1,0 +1,125 @@
+[
+  {
+    "id": 53449,
+    "contract_type": null,
+    "name": {
+      "fi": "Laaksolahden harjoitusjäähalli",
+      "sv": "Dalsviks träningsishall"
+    },
+    "street_address": { "fi": "Lähdepurontie 1", "sv": "Källbäcksvägen 1" },
+    "root_service_nodes": [1403],
+    "location": { "type": "Point", "coordinates": [24.747946, 60.246624] },
+    "geometry": { "type": "Point", "coordinates": [24.747946, 60.246624] },
+    "service_nodes": [
+      {
+        "id": 603,
+        "name": {
+          "fi": "Harjoitusjäähalli",
+          "sv": "Övningsishall",
+          "en": "Training ice arena"
+        },
+        "root": 1403,
+        "service_reference": "187",
+        "level": 4
+      }
+    ],
+    "accessibility_properties": []
+  },
+  {
+    "id": 45158,
+    "contract_type": {
+      "id": "municipal_service",
+      "description": {
+        "fi": "kunnallinen palvelu",
+        "sv": "kommunal tjänst",
+        "en": "municipal service"
+      }
+    },
+    "name": { "fi": "Jäähalli" },
+    "street_address": {
+      "fi": "Vanha Turuntie 42",
+      "sv": "Gamla Åbovägen 42",
+      "en": "Vanha Turuntie 42"
+    },
+    "root_service_nodes": [1403],
+    "location": { "type": "Point", "coordinates": [24.699003, 60.220722] },
+    "geometry": { "type": "Point", "coordinates": [24.699003, 60.220722] },
+    "service_nodes": [
+      {
+        "id": 641,
+        "name": { "fi": "Kaukalo", "sv": "Rink", "en": "Rink" },
+        "root": 1403,
+        "service_reference": "235",
+        "level": 4
+      },
+      {
+        "id": 603,
+        "name": {
+          "fi": "Harjoitusjäähalli",
+          "sv": "Övningsishall",
+          "en": "Training ice arena"
+        },
+        "root": 1403,
+        "service_reference": "187",
+        "level": 4
+      }
+    ],
+    "accessibility_properties": []
+  },
+  {
+    "id": 39255,
+    "contract_type": {
+      "id": "municipal_service",
+      "description": {
+        "fi": "kunnallinen palvelu",
+        "sv": "kommunal tjänst",
+        "en": "municipal service"
+      }
+    },
+    "name": { "fi": "Kauniaisten jäähalli", "sv": "Grankullas ishall" },
+    "street_address": { "fi": "Vanha Turuntie 42", "sv": "Gamla Åbovägen 42" },
+    "root_service_nodes": [1403],
+    "location": { "type": "Point", "coordinates": [24.69889, 60.220776] },
+    "geometry": { "type": "Point", "coordinates": [24.69889, 60.220776] },
+    "service_nodes": [
+      {
+        "id": 604,
+        "name": {
+          "fi": "Kilpajäähalli",
+          "sv": "Tävlingsishall",
+          "en": "Competition ice arena"
+        },
+        "root": 1403,
+        "service_reference": "308",
+        "level": 4
+      }
+    ],
+    "accessibility_properties": []
+  },
+  {
+    "id": 39465,
+    "contract_type": null,
+    "name": {
+      "fi": "Warrior Areena Leppävaara",
+      "sv": "Warrior Arena Alberga"
+    },
+    "street_address": { "fi": "Maantienpelto 1", "sv": "Landsvägsåkern 1" },
+    "root_service_nodes": [1403],
+    "location": { "type": "Point", "coordinates": [24.80663, 60.22376] },
+    "geometry": { "type": "Point", "coordinates": [24.80663, 60.22376] },
+    "service_nodes": [
+      {
+        "id": 603,
+        "name": {
+          "fi": "Harjoitusjäähalli",
+          "sv": "Övningsishall",
+          "en": "Training ice arena"
+        },
+        "root": 1403,
+        "service_reference": "187",
+        "level": 4
+      }
+    ],
+    "accessibility_properties": []
+  }
+]

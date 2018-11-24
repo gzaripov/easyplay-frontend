@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import UserApi, { PREFERENCE } from "./api/user";
 import Preferences from "./Preferences";
-import FieldsMap from "./FieldsMap";
+import PlaygroundsMap from "./PlaygroundsMap";
 
 export const PAGE = {
   preferences: "/preferences",
@@ -37,7 +37,7 @@ export default () => (
       <SelectPageWithRouter />
       <Switch>
         <Route exact path={PAGE.preferences} component={Preferences} />
-        <Route path={PAGE.map} component={FieldsMap} />
+        <Route path={PAGE.map} component={PlaygroundsMap} />
       </Switch>
     </>
   </Router>

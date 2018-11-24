@@ -31,6 +31,7 @@ export default class extends Component {
   state = {
     selectedActivities: [],
     center: [0, 0],
+    playgrounds: [],
     position: { type: "Point" },
     zoom: 17
   };
@@ -41,12 +42,19 @@ export default class extends Component {
     );
     MapsApi.getCurrentLocation().then(({ latitude, longitude }) => {
       this.setState({ center: [latitude, longitude] });
+      UserApi.updateLocation({ latitude, longitude }).then(() => {
+        UserApi.getNearestPlaygrounds().then(playgrounds => {
+          this.setState({ playgrounds });
+        });
+      });
     });
   }
 
   render() {
-    const { selectedActivities } = this.state;
+    const { selectedActivities, playgrounds } = this.state;
+    console.log(playgrounds);
     const { match } = this.props;
+    //const marks = playgrounds.map(({ location }) => location);
     return (
       <FieldsMapContainer>
         {/* <Waiting title="Searching" /> */}
@@ -66,6 +74,16 @@ export default class extends Component {
             <GeolocationControl
               options={{ position: { right: 10, bottom: 100 } }}
             />
+            {playgrounds.map(({ id, name, location }) => (
+              <GeoObject
+                key={id}
+                hint={name}
+                geometry={{
+                  type: "Point",
+                  coordinates: location
+                }}
+              />
+            ))}
           </Map>
         </YMaps>
         <Router>
