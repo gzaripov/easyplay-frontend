@@ -23,21 +23,22 @@ const App = styled.div`
   background-color: #282c34;
 `;
 
-function SelectPage() {
+function SelectPage({ location: { pathname } }) {
   const fields = UserApi.getPreference(PREFERENCE.fields);
   const page = fields ? PAGE.map : PAGE.preferences;
-  return <Redirect to={PAGE.map} />;
-  //return <Redirect to={page} />;
+  const isSamePage = page === pathname;
+  if (!isSamePage) {
+    return <Redirect to={page} />;
+  }
+  return null;
 }
 
 export default () => (
   <Router>
-    <>
+    <Switch>
       <SelectPage />
-      <Switch>
-        <Route exact path={PAGE.preferences} component={Preferences} />
-        <Route exact path={PAGE.map} component={FieldsMap} />
-      </Switch>
-    </>
+      <Route exact path={PAGE.preferences} component={Preferences} />
+      <Route exact path={PAGE.map} component={FieldsMap} />
+    </Switch>
   </Router>
 );
