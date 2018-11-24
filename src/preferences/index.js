@@ -10,7 +10,8 @@ const PageContainer = styled.section`
 `;
 
 const Page = styled.div`
-  margin: 0 86px;
+  max-width: 400px;
+  margin: 0 auto;
 `;
 
 const Header = styled(Heading)`
