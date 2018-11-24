@@ -73,6 +73,6 @@ export default () => (
       </SettingsButton>
     </SearchInfo>
     <FindGameButton>Find Game</FindGameButton>
-    <ShowNextActivities>Show next activities</ShowNextActivities>
+    <ShowNextActivities>Show upcoming games</ShowNextActivities>
   </BottomSheet>
 );

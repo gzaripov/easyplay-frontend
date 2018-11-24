@@ -49,7 +49,7 @@ export default () => (
     <Avatar url="/icons/avatar.jpg" />
     <Info>
       <Title>Hello, Nikolai</Title>
-      <SecondaryText>Put the marker on the where you live</SecondaryText>
+      <SecondaryText>Put the marker on the place where you live</SecondaryText>
     </Info>
     <Burger src={burger} alt="burger img" />
   </Header>
