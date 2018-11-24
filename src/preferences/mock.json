@@ -1,5 +1,6 @@
 [
-  { "id": 0, "type": "Basketball" },
-  { "id": 0, "type": "Tennis" },
-  { "id": 0, "type": "Footbal" }
+  { "id": 0, "type": "Footbal" },
+  { "id": 1, "type": "Basketball" },
+  { "id": 2, "type": "Tennis" },
+  { "id": 3, "type": "Tennis" }
 ]

@@ -36,9 +36,9 @@ function SelectPage({ location: { pathname } }) {
 export default () => (
   <Router>
     <Switch>
-      <SelectPage />
       <Route exact path={PAGE.preferences} component={Preferences} />
       <Route exact path={PAGE.map} component={FieldsMap} />
+      <SelectPage />
     </Switch>
   </Router>
 );
