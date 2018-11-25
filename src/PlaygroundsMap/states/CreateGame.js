@@ -10,7 +10,6 @@ export default ({ ...props }) => (
       <>
         <AttachedToTop>
           <Header history={history} title="Create game" />
-          <FiltersBar filters={[]} />
         </AttachedToTop>
         <AttachedToBottom>
           <CreateGameBar />

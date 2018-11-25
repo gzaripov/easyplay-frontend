@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import Select from "react-select";
 
 export const Heading = styled.h1`
   font-family: Helvetica;
@@ -56,6 +57,64 @@ export const Divider = styled.hr`
   border: none;
   background-color: rgba(0, 0, 0, 0.13);
 `;
+
+const DropdownStyled = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 5px 0;
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
+  background-color: #ffffff;
+  width: 100%;
+`;
+
+const DropdownIcon = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-left: 16px;
+`;
+
+const SelectStyled = styled(Select)`
+  width: 100%;
+  font-family: Roboto;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.87);
+
+  * {
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  &.react-select-container {
+    position: static;
+  }
+
+  .react-select__menu {
+    left: 0;
+    box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1) !important;
+  }
+`;
+
+export const Dropdown = ({
+  icon,
+  placeholder = "",
+  inputValue,
+  defaultValue,
+  ...props
+} = {}) => (
+  <DropdownStyled {...props}>
+    <DropdownIcon src={icon} />
+    <SelectStyled
+      {...props}
+      inputValue={inputValue}
+      defaultValue={defaultValue}
+      placeholder={placeholder}
+      className="react-select-container"
+      classNamePrefix="react-select"
+    />
+  </DropdownStyled>
+);
 
 const SpinnerKyframes = keyframes` 
   from {
