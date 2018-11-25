@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { AttachedToTop, AttachedToBottom } from "./Base";
 import { FindBar, FiltersBar, UserBar } from "../components";
 
-export default ({ matchPath, activities, ...props }) => (
+export default ({ matchPath, activities, onFindGame, ...props }) => (
   <Route
     {...props}
     render={() => (
@@ -13,7 +13,7 @@ export default ({ matchPath, activities, ...props }) => (
         </AttachedToTop>
         <AttachedToBottom>
           <FiltersBar filters={activities} />
-          <FindBar />
+          <FindBar onFindGame={onFindGame} />
         </AttachedToBottom>
       </>
     )}

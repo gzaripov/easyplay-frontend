@@ -29,9 +29,9 @@ const ShowNextActivities = styled(Button)`
   padding: 0;
 `;
 
-const FindBar = ({ history }) => (
+const FindBar = ({ history, onFindGame }) => (
   <FindBarStyled>
-    <FindGameButton>Find Game</FindGameButton>
+    <FindGameButton onClick={onFindGame}>Find Game</FindGameButton>
     <ShowNextActivities onClick={() => history.push(STATE.upcomingGames)}>
       Show upcoming games
     </ShowNextActivities>

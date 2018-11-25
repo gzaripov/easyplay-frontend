@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { AttachedToTop, AttachedToBottom } from "./Base";
 import { Header, PlaygroundBar } from "../components";
 
-export default ({ matchPath, playground, ...props }) => (
+export default ({ playground, ...props }) => (
   <Route
     {...props}
     render={({ history }) => (

@@ -22,6 +22,7 @@ export const STATE = {
 
 export default class extends Component {
   state = {
+    isLoading: false,
     selectedActivities: [],
     center: [0, 0],
     playgrounds: [],
@@ -43,14 +44,21 @@ export default class extends Component {
     });
   }
 
+  findGame = () => {
+    this.props.history.push(STATE.searchResults);
+
+    /* this.setState({ isLoading: true });
+    setTimeout(() => {
+      const bestPlayground = this.state.playgrounds.find(({ best }) => best);
+      this.setState({ isLoading: false, bestPlayground });
+    }, 5000); */
+  };
+
   render() {
-    const { selectedActivities, playgrounds } = this.state;
-    console.log(playgrounds);
-    const { match } = this.props;
-    //const marks = playgrounds.map(({ location }) => location);
+    const { selectedActivities, playgrounds, isLoading } = this.state;
     return (
       <FieldsMapContainer>
-        {/* <Waiting title="Searching" /> */}
+        {isLoading && <Waiting title="Searching" />}
         <YMaps query={{ lang: "en_US" }}>
           <Map width="100%" height="100%" state={this.state}>
             <GeoObject
@@ -76,10 +84,15 @@ export default class extends Component {
         </YMaps>
         <Router>
           <Switch>
-            <Main path={STATE.main} activities={selectedActivities} />
-            <SearchResults path={STATE.searchResults} />
+            <Main
+              path={STATE.main}
+              activities={selectedActivities}
+              onFindGame={this.findGame}
+              {...this.props}
+            />
+            <SearchResults path={STATE.searchResults} {...this.props} />
             <Upcoming path={STATE.upcomingGames} playgrounds={playgrounds} />
-            <CreateGame path={STATE.createGame} />
+            <CreateGame path={STATE.createGame} {...this.props} />
             <Redirect from="/map" to={STATE.main} />
           </Switch>
         </Router>

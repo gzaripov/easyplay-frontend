@@ -62,6 +62,7 @@ class Api {
       ({
         id,
         name: { fi: name },
+        best,
         street_address: { fi: address },
         location: {
           coordinates: [latitude, longitude]
@@ -74,6 +75,7 @@ class Api {
       }) => ({
         id,
         name,
+        best: !!best,
         address,
         location: [longitude, latitude],
         type
@@ -81,10 +83,12 @@ class Api {
     );
   }
 
-  getUnits(id) {
-    return this.requestJson(REQUEST.getUnits, { id, radius: 4000 }).then(
-      units => Promise.resolve(this.mapUnitsToPlaygrounds(units))
-    );
+  getUnits(id, activity) {
+    return this.requestJson(REQUEST.getUnits, {
+      id,
+      radius: 4000,
+      activity
+    }).then(units => Promise.resolve(this.mapUnitsToPlaygrounds(units)));
   }
 
   getActivities() {

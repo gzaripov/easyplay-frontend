@@ -46,7 +46,8 @@ class UserApi {
   }
 
   getNearestPlaygrounds() {
-    return ServerApi.getUnits(this.user.id);
+    const activity = this.getPreference(PREFERENCE.selectedActivities)[0];
+    return ServerApi.getUnits(this.user.id, activity);
   }
 
   hasPreference(type) {

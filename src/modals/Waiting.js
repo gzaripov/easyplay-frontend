@@ -7,6 +7,12 @@ const Heading = styled(Header)`
   margin-top: 10px;
 `;
 
+function pad(num, size) {
+  var s = num + "";
+  while (s.length < size) s = "0" + s;
+  return s;
+}
+
 class Timer extends Component {
   state = {
     seconds: 0
@@ -31,7 +37,7 @@ class Timer extends Component {
     const seconds = secs % 60;
     return (
       <div>
-        {minutes}:{seconds}
+        {pad(minutes, 2)}:{pad(seconds, 2)}
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { AttachedToTop, AttachedToBottom } from "./Base";
-import { Header, CreateGameBar, FiltersBar } from "../components";
+import { Header, CreateGameBar } from "../components";
 
 export default ({ ...props }) => (
   <Route
