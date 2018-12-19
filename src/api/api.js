@@ -1,4 +1,4 @@
-const origin = "http://10.100.25.210:3000";
+const origin = "https://ae90a536.ngrok.io";
 
 export const REQUEST = {
   createUser: {
