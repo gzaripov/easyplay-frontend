@@ -7,8 +7,8 @@ import {
   withRouter
 } from "react-router-dom";
 import UserApi, { PREFERENCE } from "./api/user";
-import Preferences from "./Preferences";
-import PlaygroundsMap from "./PlaygroundsMap";
+import Preferences from "./Preferences/index";
+import PlaygroundsMap from "./PlaygroundsMap/index";
 
 export const PAGE = {
   preferences: "/preferences",
